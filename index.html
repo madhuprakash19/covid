@@ -1,0 +1,867 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <style>
+        #loader {
+            border: 12px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 12px solid #444444;
+            width: 70px;
+            height: 70px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .center {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+        }
+    </style>
+     <div id="loader" class="center"></div>
+    <script>
+        document.onreadystatechange = function () {
+            if (document.readyState !== "complete") {
+                document.querySelector(
+                    "body").style.visibility = "hidden";
+                document.querySelector(
+                    "#loader").style.visibility = "visible";
+            } else {
+                document.querySelector(
+                    "#loader").style.display = "none";
+                document.querySelector(
+                    "body").style.visibility = "visible";
+            }
+        }; 
+    </script>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+
+    <title>Covid-19</title>
+  </head>
+  <body>
+
+    <h1 class="text-center">Covid19 Live-status</h1>
+    <div class="text-muted">Last update:<span id="lastUpdate"></span></div>
+<div id="id01"></div>
+
+<script>
+var xmlhttp = new XMLHttpRequest();
+var url = "https://covid19-api.org/api/status";
+
+xmlhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        myFunction(this.responseText);
+    }
+}
+xmlhttp.open("GET", url, true);
+xmlhttp.send();
+
+function myFunction(response) {
+    var arr = JSON.parse(response);
+    var i;
+    for(i = 0;i<arr.length;i++){
+        // to change short form of country name to readable form
+        // chcek for more efficient way
+        // this is first try
+        // console.log(arr.length);
+        if(arr[i].country=="IN"){
+            arr[i].country="INDIA";
+        }
+        else if(arr[i].country=="AL"){
+            arr[i].country="Albania";
+        }
+        else if(arr[i].country=="AF"){
+            arr[i].country="Afghanistan";
+        }
+        else if(arr[i].country=="DZ"){
+            arr[i].country="Algeria";
+        }
+        else if(arr[i].country=="AS"){
+            arr[i].country="American Samoa";
+        }
+        else if(arr[i].country=="AD"){
+            arr[i].country="Andorra";
+        }
+        else if(arr[i].country=="AO"){
+            arr[i].country="Angola";
+        }
+        else if(arr[i].country=="AI"){
+            arr[i].country="Anguilla";
+        }
+        else if(arr[i].country=="AQ"){
+            arr[i].country="Antarctica";
+        }
+        else if(arr[i].country=="AG"){
+            arr[i].country="Antigua and Barbuda";
+        }
+        else if(arr[i].country=="AR"){
+            arr[i].country="Argentina";
+        }
+        else if(arr[i].country=="AM"){
+            arr[i].country="Armenia";
+        }
+        else if(arr[i].country=="AW"){
+            arr[i].country="Aruba";
+        }
+        else if(arr[i].country=="AU"){
+            arr[i].country="Australia";
+        }
+        else if(arr[i].country=="AT"){
+            arr[i].country="Austria";
+        }
+        else if(arr[i].country=="AZ"){
+            arr[i].country="Azerbaijan";
+        }
+        else if(arr[i].country=="BS"){
+            arr[i].country="Bahamas ";
+        }
+        else if(arr[i].country=="BH"){
+            arr[i].country="Bahrain";
+        }
+        else if(arr[i].country=="BD"){
+            arr[i].country="Bangladesh";
+        }
+        else if(arr[i].country=="BB"){
+            arr[i].country="Barbados";
+        }
+        else if(arr[i].country=="BY"){
+            arr[i].country="Belarus";
+        }
+        else if(arr[i].country=="BE"){
+            arr[i].country="Belgium";
+        }
+        else if(arr[i].country=="BZ"){
+            arr[i].country="Belize";
+        }
+        else if(arr[i].country=="BJ"){
+            arr[i].country="Benin   ";
+        }
+        else if(arr[i].country=="BM"){
+            arr[i].country="Bermuda";
+        }
+        else if(arr[i].country=="BT"){
+            arr[i].country="Bhutan";
+        }
+        else if(arr[i].country=="BO"){
+            arr[i].country="Bolivia ";
+        }
+        else if(arr[i].country=="BQ"){
+            arr[i].country="Bonaire";
+        }
+        else if(arr[i].country=="BA"){
+            arr[i].country="Bosnia ";
+        }
+        else if(arr[i].country=="BW"){
+            arr[i].country="Botswana";
+        }
+        else if(arr[i].country=="BV "){
+            arr[i].country="Bouvet Island   ";
+        }
+        else if(arr[i].country=="BR"){
+            arr[i].country="Brazil  ";
+        }
+        else if(arr[i].country=="IO"){
+            arr[i].country="British Indian Ocean Territory (the)    ";
+        }
+        else if(arr[i].country=="BN"){
+            arr[i].country="Brunei Darussalam   ";
+        }
+        else if(arr[i].country=="BG"){
+            arr[i].country="Bulgaria    ";
+        }
+        else if(arr[i].country=="BF"){
+            arr[i].country="Burkina Faso    ";
+        }
+        else if(arr[i].country=="BI"){
+            arr[i].country="Burundi ";
+        }
+        else if(arr[i].country=="CV"){
+            arr[i].country="Cabo Verde  ";
+        }
+        else if(arr[i].country=="KH"){
+            arr[i].country="Cambodia    ";
+        }
+        else if(arr[i].country=="CM"){
+            arr[i].country="Cameroon    ";
+        }
+        else if(arr[i].country=="CA"){
+            arr[i].country="Canada  ";
+        }
+        else if(arr[i].country=="KY"){
+            arr[i].country="Cayman Islands (the)    ";
+        }
+        else if(arr[i].country=="CF"){
+            arr[i].country="Central African Republic (the)  ";
+        }
+        else if(arr[i].country=="TD"){
+            arr[i].country="Chad    ";
+        }
+        else if(arr[i].country=="CL"){
+            arr[i].country="Chile   ";
+        }
+        else if(arr[i].country=="CN"){
+            arr[i].country="China   ";
+        }
+        else if(arr[i].country=="CX"){
+            arr[i].country="Christmas Island    ";
+        }
+        else if(arr[i].country=="CC"){
+            arr[i].country="Cocos (Keeling) Islands (the)   ";
+        }
+        else if(arr[i].country=="CO"){
+            arr[i].country="Colombia    ";
+        }
+        else if(arr[i].country=="KM"){
+            arr[i].country="Comoros (the)   ";
+        }
+        else if(arr[i].country=="CD"){
+            arr[i].country="Congo (the Democratic Republic of the)  ";
+        }
+        else if(arr[i].country=="CG"){
+            arr[i].country="Congo (the) ";
+        }
+        else if(arr[i].country=="CK"){
+            arr[i].country="Cook Islands (the)  ";
+        }
+        else if(arr[i].country=="CR"){
+            arr[i].country="Costa Rica  ";
+        }
+        else if(arr[i].country=="CU"){
+            arr[i].country="Cuba    ";
+        }
+        else if(arr[i].country=="CW"){
+            arr[i].country="Curaçao ";
+        }
+        else if(arr[i].country=="CY"){
+            arr[i].country="Cyprus  ";
+        }
+        else if(arr[i].country=="CZ"){
+            arr[i].country="Czechia ";
+        }
+        else if(arr[i].country=="CI"){
+            arr[i].country="Côte d'Ivoire   ";
+        }
+        else if(arr[i].country=="DK"){
+            arr[i].country="Denmark ";
+        }
+        else if(arr[i].country=="DJ"){
+            arr[i].country="Djibouti    ";
+        }
+        else if(arr[i].country=="DM"){
+            arr[i].country="Dominica    ";
+        }
+        else if(arr[i].country=="DO"){
+            arr[i].country="Dominican Republic (the)    ";
+        }
+        else if(arr[i].country=="EC"){
+            arr[i].country="Ecuador ";
+        }
+        else if(arr[i].country=="EG"){
+            arr[i].country="Egypt   ";
+        }
+        else if(arr[i].country=="SV"){
+            arr[i].country="El Salvador ";
+        }
+        else if(arr[i].country=="GQ"){
+            arr[i].country="Equatorial Guinea   ";
+        }
+        else if(arr[i].country=="ER"){
+            arr[i].country="Eritrea ";
+        }
+        else if(arr[i].country=="EE"){
+            arr[i].country="Estonia ";
+        }
+        else if(arr[i].country=="SZ"){
+            arr[i].country="Eswatini    ";
+        }
+        else if(arr[i].country=="ET"){
+            arr[i].country="Ethiopia    ";
+        }
+        else if(arr[i].country=="FK"){
+            arr[i].country="Falkland Islands (the) [Malvinas]   ";
+        }
+        else if(arr[i].country=="FO"){
+            arr[i].country="Faroe Islands (the) ";
+        }
+        else if(arr[i].country=="FJ"){
+            arr[i].country="Fiji    ";
+        }
+        else if(arr[i].country=="FI"){
+            arr[i].country="Finland ";
+        }
+        else if(arr[i].country=="FR"){
+            arr[i].country="France  ";
+        }
+        else if(arr[i].country=="GF"){
+            arr[i].country="French Guiana   ";
+        }
+        else if(arr[i].country=="PF"){
+            arr[i].country="French Polynesia    ";
+        }
+        else if(arr[i].country=="TF"){
+            arr[i].country="French Southern Territories (the)   ";
+        }
+        else if(arr[i].country=="GA"){
+            arr[i].country="Gabon   ";
+        }
+        else if(arr[i].country=="GM"){
+            arr[i].country="Gambia (the)    ";
+        }
+        else if(arr[i].country=="GE"){
+            arr[i].country="Georgia ";
+        }
+        else if(arr[i].country=="DE"){
+            arr[i].country="Germany ";
+        }
+        else if(arr[i].country=="GH"){
+            arr[i].country="Ghana   ";
+        }
+        else if(arr[i].country=="GI"){
+            arr[i].country="Gibraltar   ";
+        }
+        else if(arr[i].country=="GR"){
+            arr[i].country="Greece  ";
+        }
+        else if(arr[i].country=="GL"){
+            arr[i].country="Greenland   ";
+        }
+        else if(arr[i].country=="GD"){
+            arr[i].country="Grenada ";
+        }
+        else if(arr[i].country=="GP"){
+            arr[i].country="Guadeloupe  ";
+        }
+        else if(arr[i].country=="GU"){
+            arr[i].country="Guam    ";
+        }
+        else if(arr[i].country=="GT"){
+            arr[i].country="Guatemala   ";
+        }
+        else if(arr[i].country=="GG"){
+            arr[i].country="Guernsey    ";
+        }
+        else if(arr[i].country=="GN"){
+            arr[i].country="Guinea  ";
+        }
+        else if(arr[i].country=="GW"){
+            arr[i].country="Guinea-Bissau   ";
+        }
+        else if(arr[i].country=="GY"){
+            arr[i].country="Guyana  ";
+        }
+        else if(arr[i].country=="HT"){
+            arr[i].country="Haiti   ";
+        }
+        else if(arr[i].country=="HM"){
+            arr[i].country="Heard Island and McDonald Islands   ";
+        }
+        else if(arr[i].country=="VA"){
+            arr[i].country="Holy See (the)  ";
+        }
+        else if(arr[i].country=="HN"){
+            arr[i].country="Honduras    ";
+        }
+        else if(arr[i].country=="HK"){
+            arr[i].country="Hong Kong   ";
+        }
+        else if(arr[i].country=="HU"){
+            arr[i].country="Hungary ";
+        }
+        else if(arr[i].country=="IS"){
+            arr[i].country="Iceland ";
+        }
+        else if(arr[i].country=="IN"){
+            arr[i].country="India   ";
+        }
+        else if(arr[i].country=="ID"){
+            arr[i].country="Indonesia   ";
+        }
+        else if(arr[i].country=="IR"){
+            arr[i].country="Iran (Islamic Republic of)  ";
+        }
+        else if(arr[i].country=="IQ"){
+            arr[i].country="Iraq    ";
+        }
+        else if(arr[i].country=="IE"){
+            arr[i].country="Ireland ";
+        }
+        else if(arr[i].country=="IM"){
+            arr[i].country="Isle of Man ";
+        }
+        else if(arr[i].country=="IL"){
+            arr[i].country="Israel  ";
+        }
+        else if(arr[i].country=="IT"){
+            arr[i].country="Italy   ";
+        }
+        else if(arr[i].country=="JM"){
+            arr[i].country="Jamaica ";
+        }
+        else if(arr[i].country=="JP"){
+            arr[i].country="Japan   ";
+        }
+        else if(arr[i].country=="JE"){
+            arr[i].country="Jersey  ";
+        }
+        else if(arr[i].country=="JO"){
+            arr[i].country="Jordan  ";
+        }
+        else if(arr[i].country=="KZ"){
+            arr[i].country="Kazakhstan  ";
+        }
+        else if(arr[i].country=="KE"){
+            arr[i].country="Kenya   ";
+        }
+        else if(arr[i].country=="KI"){
+            arr[i].country="Kiribati    ";
+        }
+        else if(arr[i].country=="KP"){
+            arr[i].country="Korea (the Democratic People's Republic of) ";
+        }
+        else if(arr[i].country=="KR"){
+            arr[i].country="Korea (the Republic of) ";
+        }
+        else if(arr[i].country=="KW"){
+            arr[i].country="Kuwait  ";
+        }
+        else if(arr[i].country=="KG"){
+            arr[i].country="Kyrgyzstan  ";
+        }
+        else if(arr[i].country=="LA"){
+            arr[i].country="Lao People's Democratic Republic (the)  ";
+        }
+        else if(arr[i].country=="LV"){
+            arr[i].country="Latvia  ";
+        }
+        else if(arr[i].country=="LB"){
+            arr[i].country="Lebanon ";
+        }
+        else if(arr[i].country=="LS"){
+            arr[i].country="Lesotho ";
+        }
+        else if(arr[i].country=="LR"){
+            arr[i].country="Liberia ";
+        }
+        else if(arr[i].country=="LY"){
+            arr[i].country="Libya   ";
+        }
+        else if(arr[i].country=="LI"){
+            arr[i].country="Liechtenstein   ";
+        }
+        else if(arr[i].country=="LT"){
+            arr[i].country="Lithuania   ";
+        }
+        else if(arr[i].country=="LU"){
+            arr[i].country="Luxembourg  ";
+        }
+        else if(arr[i].country=="MO"){
+            arr[i].country="Macao   ";
+        }
+        else if(arr[i].country=="MG"){
+            arr[i].country="Madagascar  ";
+        }
+        else if(arr[i].country=="MW"){
+            arr[i].country="Malawi  ";
+        }
+        else if(arr[i].country=="MY"){
+            arr[i].country="Malaysia    ";
+        }
+        else if(arr[i].country=="MV"){
+            arr[i].country="Maldives    ";
+        }
+        else if(arr[i].country=="ML"){
+            arr[i].country="Mali    ";
+        }
+        else if(arr[i].country=="MT"){
+            arr[i].country="Malta   ";
+        }
+        else if(arr[i].country=="MH"){
+            arr[i].country="Marshall Islands (the)  ";
+        }
+        else if(arr[i].country=="MQ"){
+            arr[i].country="Martinique  ";
+        }
+        else if(arr[i].country=="MR"){
+            arr[i].country="Mauritania  ";
+        }
+        else if(arr[i].country=="MU"){
+            arr[i].country="Mauritius   ";
+        }
+        else if(arr[i].country=="YT"){
+            arr[i].country="Mayotte ";
+        }
+        else if(arr[i].country=="MX"){
+            arr[i].country="Mexico  ";
+        }
+        else if(arr[i].country=="FM"){
+            arr[i].country="Micronesia (Federated States of)    ";
+        }
+        else if(arr[i].country=="MD"){
+            arr[i].country="Moldova (the Republic of)   ";
+        }
+        else if(arr[i].country=="MC"){
+            arr[i].country="Monaco  ";
+        }
+        else if(arr[i].country=="MN"){
+            arr[i].country="Mongolia    ";
+        }
+        else if(arr[i].country=="ME"){
+            arr[i].country="Montenegro  ";
+        }
+        else if(arr[i].country=="MS"){
+            arr[i].country="Montserrat  ";
+        }
+        else if(arr[i].country=="MA"){
+            arr[i].country="Morocco ";
+        }
+        else if(arr[i].country=="MZ"){
+            arr[i].country="Mozambique  ";
+        }
+        else if(arr[i].country=="MM"){
+            arr[i].country="Myanmar ";
+        }
+        else if(arr[i].country=="NA"){
+            arr[i].country="Namibia ";
+        }
+        else if(arr[i].country=="NR"){
+            arr[i].country="Nauru   ";
+        }
+        else if(arr[i].country=="NP"){
+            arr[i].country="Nepal   ";
+        }
+        else if(arr[i].country=="NL"){
+            arr[i].country="Netherlands (the)   ";
+        }
+        else if(arr[i].country=="NC"){
+            arr[i].country="New Caledonia   ";
+        }
+        else if(arr[i].country=="NZ"){
+            arr[i].country="New Zealand ";
+        }
+        else if(arr[i].country=="NI"){
+            arr[i].country="Nicaragua   ";
+        }
+        else if(arr[i].country=="NE"){
+            arr[i].country="Niger (the) ";
+        }
+        else if(arr[i].country=="NG"){
+            arr[i].country="Nigeria ";
+        }
+        else if(arr[i].country=="NU"){
+            arr[i].country="Niue    ";
+        }
+        else if(arr[i].country=="NF"){
+            arr[i].country="Norfolk Island  ";
+        }
+        else if(arr[i].country=="MP"){
+            arr[i].country="Northern Mariana Islands (the)  ";
+        }
+        else if(arr[i].country=="NO"){
+            arr[i].country="Norway  ";
+        }
+        else if(arr[i].country=="OM"){
+            arr[i].country="Oman    ";
+        }
+        else if(arr[i].country=="PK"){
+            arr[i].country="Pakistan    ";
+        }
+        else if(arr[i].country=="PW"){
+            arr[i].country="Palau   ";
+        }
+        else if(arr[i].country=="PS"){
+            arr[i].country="Palestine, State of ";
+        }
+        else if(arr[i].country=="PA"){
+            arr[i].country="Panama  ";
+        }
+        else if(arr[i].country=="PG"){
+            arr[i].country="Papua New Guinea    ";
+        }
+        else if(arr[i].country=="PY"){
+            arr[i].country="Paraguay    ";
+        }
+        else if(arr[i].country=="PE"){
+            arr[i].country="Peru    ";
+        }
+        else if(arr[i].country=="PH"){
+            arr[i].country="Philippines (the)   ";
+        }
+        else if(arr[i].country=="PN"){
+            arr[i].country="Pitcairn    ";
+        }
+        else if(arr[i].country=="PL"){
+            arr[i].country="Poland  ";
+        }
+        else if(arr[i].country=="PT"){
+            arr[i].country="Portugal    ";
+        }
+        else if(arr[i].country=="PR"){
+            arr[i].country="Puerto Rico ";
+        }
+        else if(arr[i].country=="QA"){
+            arr[i].country="Qatar   ";
+        }
+        else if(arr[i].country=="MK"){
+            arr[i].country="Republic of North Macedonia ";
+        }
+        else if(arr[i].country=="RO"){
+            arr[i].country="Romania ";
+        }
+        else if(arr[i].country=="RU"){
+            arr[i].country="Russian Federation (the)    ";
+        }
+        else if(arr[i].country=="RW"){
+            arr[i].country="Rwanda  ";
+        }
+        else if(arr[i].country=="RE"){
+            arr[i].country="Réunion ";
+        }
+        else if(arr[i].country=="BL"){
+            arr[i].country="Saint Barthélemy    ";
+        }
+        else if(arr[i].country=="SH "){
+            arr[i].country="Saint Helena, Ascension and Tristan da Cunha    ";
+        }
+        else if(arr[i].country=="KN"){
+            arr[i].country="Saint Kitts and Nevis   ";
+        }
+        else if(arr[i].country=="LC"){
+            arr[i].country="Saint Lucia ";
+        }
+        else if(arr[i].country=="MF"){
+            arr[i].country="Saint Martin (French part)  ";
+        }
+        else if(arr[i].country=="PM"){
+            arr[i].country="Saint Pierre and Miquelon   ";
+        }
+        else if(arr[i].country=="VC"){
+            arr[i].country="Saint Vincent and the Grenadines    ";
+        }
+        else if(arr[i].country=="WS"){
+            arr[i].country="Samoa   ";
+        }
+        else if(arr[i].country=="SM"){
+            arr[i].country="San Marino  ";
+        }
+        else if(arr[i].country=="ST"){
+            arr[i].country="Sao Tome and Principe   ";
+        }
+        else if(arr[i].country=="SA"){
+            arr[i].country="Saudi Arabia    ";
+        }
+        else if(arr[i].country=="SN"){
+            arr[i].country="Senegal ";
+        }
+        else if(arr[i].country=="RS"){
+            arr[i].country="Serbia  ";
+        }
+        else if(arr[i].country=="SC "){
+            arr[i].country="Seychelles  ";
+        }
+        else if(arr[i].country=="SL"){
+            arr[i].country="Sierra Leone    ";
+        }
+        else if(arr[i].country=="SG"){
+            arr[i].country="Singapore   ";
+        }
+        else if(arr[i].country=="SX"){
+            arr[i].country="Sint Maarten (Dutch part)   ";
+        }
+        else if(arr[i].country=="SK"){
+            arr[i].country="Slovakia    ";
+        }
+        else if(arr[i].country=="SI"){
+            arr[i].country="Slovenia    ";
+        }
+        else if(arr[i].country=="SB"){
+            arr[i].country="Solomon Islands ";
+        }
+        else if(arr[i].country=="SO"){
+            arr[i].country="Somalia ";
+        }
+        else if(arr[i].country=="ZA"){
+            arr[i].country="South Africa    ";
+        }
+        else if(arr[i].country=="GS "){
+            arr[i].country="South Georgia and the South Sandwich Islands    ";
+        }
+        else if(arr[i].country=="SS"){
+            arr[i].country="South Sudan ";
+        }
+        else if(arr[i].country=="ES"){
+            arr[i].country="Spain   ";
+        }
+        else if(arr[i].country=="LK"){
+            arr[i].country="Sri Lanka   ";
+        }
+        else if(arr[i].country=="SD"){
+            arr[i].country="Sudan (the) ";
+        }
+        else if(arr[i].country=="SR"){
+            arr[i].country="Suriname    ";
+        }
+        else if(arr[i].country=="SJ"){
+            arr[i].country="Svalbard and Jan Mayen  ";
+        }
+        else if(arr[i].country=="SE"){
+            arr[i].country="Sweden  ";
+        }
+        else if(arr[i].country=="CH"){
+            arr[i].country="Switzerland ";
+        }
+        else if(arr[i].country=="SY"){
+            arr[i].country="Syrian Arab Republic    ";
+        }
+        else if(arr[i].country=="TW "){
+            arr[i].country="Taiwan (Province of China)  ";
+        }
+        else if(arr[i].country=="TJ"){
+            arr[i].country="Tajikistan  ";
+        }
+        else if(arr[i].country=="TZ"){
+            arr[i].country="Tanzania, United Republic of    ";
+        }
+        else if(arr[i].country=="TH"){
+            arr[i].country="Thailand    ";
+        }
+        else if(arr[i].country=="TL"){
+            arr[i].country="Timor-Leste ";
+        }
+        else if(arr[i].country=="TG "){
+            arr[i].country="Togo    ";
+        }
+        else if(arr[i].country=="TK"){
+            arr[i].country="Tokelau ";
+        }
+        else if(arr[i].country=="TO"){
+            arr[i].country="Tonga   ";
+        }
+        else if(arr[i].country=="TT"){
+            arr[i].country="Trinidad and Tobago ";
+        }
+        else if(arr[i].country=="TN"){
+            arr[i].country="Tunisia ";
+        }
+        else if(arr[i].country=="TR"){
+            arr[i].country="Turkey  ";
+        }
+        else if(arr[i].country=="TM"){
+            arr[i].country="Turkmenistan    ";
+        }
+        else if(arr[i].country=="TC"){
+            arr[i].country="Turks and Caicos Islands (the)  ";
+        }
+        else if(arr[i].country=="TV"){
+            arr[i].country="Tuvalu  ";
+        }
+        else if(arr[i].country=="UG"){
+            arr[i].country="Uganda  ";
+        }
+        else if(arr[i].country=="UA"){
+            arr[i].country="Ukraine ";
+        }
+        else if(arr[i].country=="AE"){
+            arr[i].country="United Arab Emirates (the)  ";
+        }
+        else if(arr[i].country=="GB"){
+            arr[i].country="United Kingdom of Great Britain and Northern Ireland (the)  ";
+        }
+        else if(arr[i].country=="UM"){
+            arr[i].country="United States Minor Outlying Islands (the)  ";
+        }
+        else if(arr[i].country=="US"){
+            arr[i].country="United States of America (the)  ";
+        }
+        else if(arr[i].country=="UY"){
+            arr[i].country="Uruguay ";
+        }
+        else if(arr[i].country=="UZ"){
+            arr[i].country="Uzbekistan  ";
+        }
+        else if(arr[i].country=="VU"){
+            arr[i].country="Vanuatu ";
+        }
+        else if(arr[i].country=="VE"){
+            arr[i].country="Venezuela (Bolivarian Republic of)  ";
+        }
+        else if(arr[i].country=="VN"){
+            arr[i].country="Viet Nam    ";
+        }
+        else if(arr[i].country=="VG"){
+            arr[i].country="Virgin Islands (British)    ";
+        }
+        else if(arr[i].country=="VI"){
+            arr[i].country="Virgin Islands (U.S.)   ";
+        }
+        else if(arr[i].country=="WF"){
+            arr[i].country="Wallis and Futuna   ";
+        }
+        else if(arr[i].country=="EH"){
+            arr[i].country="Western Sahara";
+        }
+        else if(arr[i].country=="YE"){
+            arr[i].country="Yemen   ";
+        }
+        else if(arr[i].country=="ZM"){
+            arr[i].country="Zambia  ";
+        }
+        else if(arr[i].country=="ZW"){
+            arr[i].country="Zimbabwe    ";
+        }
+        else if(arr[i].country=="AX"){
+            arr[i].country="Åland Islands   ";
+        }
+    }
+    document.getElementById("lastUpdate").innerHTML =arr[0].last_update;
+
+    var out = "<table class='table table-striped'>";
+     out += "<thead>"+
+     "<tr><th>Country</th><th>Total Cases</th><th>Recovered</th><th>Death</th></tr></thead>"
+    out+= "<tbody>";
+
+
+    for(i = 0; i < arr.length; i++) {
+        out += "<tr><td>" +
+        arr[i].country +
+        "</td><td>" +
+        arr[i].cases +
+        "</td><td>" +
+        arr[i].recovered +
+        "</td><td>" +
+        arr[i].deaths +
+        "</td></tr>";
+    }
+    out += "</tbody>"
+    out += "</table>";
+    document.getElementById("id01").innerHTML = out;
+}
+</script>
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+
+    <!-- Option 2: jQuery, Popper.js, and Bootstrap JS
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
+    -->
+  </body>
+</html>
